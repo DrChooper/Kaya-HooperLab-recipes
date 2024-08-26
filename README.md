@@ -2,7 +2,9 @@
 This repository contains materials, resources and a collection of recipes useful for the High-Performance Computing (HPC) in KAYA. Covered topics related to HPC include Unix, SSH, scripting, version control using Git and GitHub, working with VS Code on remote servers, running Jupyter notebooks remotely, scheduling tasks with Kaya, and utilizing Kaya on Demand GUI. The Readme file contains an overview of the process and links to recipes.
 
 ## Quick Link to recipes:
+- [Setting up Julia Projects](Julia_projects.md)
 - [Recipes Directory](RecipesDir.md)
+
 
 ## Table of Contents
 - [Resources](#resources-useful-for-novices-and-beyond)
