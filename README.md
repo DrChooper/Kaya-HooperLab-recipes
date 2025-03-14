@@ -1,15 +1,23 @@
 # <img src="assets/img/HooperLab.png" alt="Hooper Lab Icon" align="right" width="150"> Kaya-HooperLab-recipes
 This repository contains materials, resources and a collection of recipes useful for the High-Performance Computing (HPC) in KAYA. Covered topics related to HPC include Unix, SSH, scripting, version control using Git and GitHub, working with VS Code on remote servers, running Jupyter notebooks remotely, scheduling tasks with Kaya, and utilizing Kaya on Demand GUI. The Readme file contains an overview of the process and links to recipes.
 
-## Quick Link to recipes:
-- [Setting up Julia Projects](Julia_projects.md)
-- [Recipes Directory](RecipesDir.md)
 
+## Intro to HPC
+This landing page gives you an overview HPC and how it is put together. For the novice it is a good read so you know where things are and whatthey generally mean. If you are looking for a specific code please go to the Recipies directory or under Quick links. For Group owners or if you need to install someting you might find useful things under Admin SOPs. This includes setting up standard permissions, dealing with mulitple groups, creating modules and benchmarking etc.
 
-## Table of Contents
-- [Resources](#resources-useful-for-novices-and-beyond)
-- [Practical introduction to KAYA](practical-introduction-to-kaya)
-- [SLURM: What is it?](#slurm-what-is-it)
+## Contents Exchange Table
+
+### Basics when starting and finishing
+1. [Get Started on Kaya in the Hooper](sops/GetStarted.md)
+2. [Group Data Storage](sops/DataStorage.md)
+2. [Slurm Intro](sops/SLURMintro.md)
+3. [Hand Over](sops/handover.md)
+
+### More advanced items
+- [Bespoke Software Installation](sops/AdminSOP.md)
+- [Recipes Directory](recipes/RecipesDir.md)
+<!-- - [Setting up Julia Projects](Julia_projects.md) -->
+- [Benchmarking](sops/benchmarking.md)
 
 ## Resources useful for novices and beyond:
 - [ListerLab Tutorial](https://github.com/cpflueger2016/Kaya-ListerLab-Tutorial)
@@ -21,10 +29,11 @@ This repository contains materials, resources and a collection of recipes useful
 - [Cloud Computing with BLAST](https://angus.readthedocs.io/en/2019/cloud_computing_intro.html#running-command-line-blast)
 - [FileZilla](https://filezilla-project.org/download.php?type=client)
 - [Pawsey Documentation](https://support.pawsey.org.au/documentation/display/US/Supercomputing+Documentation)
+- [Pawsey MetaGenomics Workshop](https://linsalrob.github.io/ComputationalGenomicsManual/Workshops/COMBINE_WA_2024.html)
 
 
 ## Practical introduction to KAYA
-Kaya is our HPC cluster that consists of compute nodes that handle heavy computational tasks. These nodes can only be accessed through the **login node**, which serves as the gateway for users to access and manage their jobs on the cluster. For data storage, Kaya provides a **data drive** (e.g. `/group/peb007/`), where researchers can store their datasets and project files. There's also a **scratch drive** (e.g. `/scratch/peb007/`) available for temporary storage and fast data processing during computations and storing intermediate results during job execution.
+Kaya is our HPC cluster that consists of many compute nodes that handle heavy computational tasks. These nodes can only be accessed through the **login node**, which serves as the gateway for users to access and manage their jobs on the cluster. For data storage, Kaya provides a **data drive** (e.g. `/group/peb007/`), where researchers can store their datasets and project files. There's also a **scratch drive** (e.g. `/scratch/peb007/`) available for temporary storage and fast data processing during computations and storing intermediate results during job execution.
 
 <img src="assets/img/kaya_storage_schematic.png">
 
@@ -32,9 +41,21 @@ Kaya is our HPC cluster that consists of compute nodes that handle heavy computa
 
 In order to interact with the compute nodes you have to log onto KAYA from the UWA Intranet and schedule computing job. 
 
+## What are the things that people talk of?
+- Node
+is equivalent to a computer unit
+- CPU
+performing the tasks
+- RAM
+fast storage while computing
+working memory
+- Storage
+long term memory
+
+You cannot "just" install stuff and download "pieces" and "get stuff running". This is a set up that you need submit jobs to from your "log on node". **IF YOU SET YOUR PROGRAM RUNNING WITHOUT SLURM YOU WILL BREAK YOUR NODE**
 
 ## SLURM what is it?
-SLURM (Simple Linux Utility for Resource Management) is used for job scheduling on HPC clusters. It optimizes computing tasks on clusters and manages job scheduling efficiently.
+SLURM (Simple Linux Utility for Resource Management) is used for job scheduling on HPC clusters. It optimizes computing tasks on clusters and manages job scheduling efficiently. So in short it is the PA of the supercomputer that makes your appointment to use the high performance computing nodes that you need. This makes it more efficient for all users. You tell the PA what you need (do you need lots of memory or lots of processing?)
 
 [SLURM Documentation](https://slurm.schedmd.com/)
  

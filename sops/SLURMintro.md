@@ -1,7 +1,29 @@
-## The Whole SLURM
-Here an intro and cheat sheets for SLURM.
+## SLURM intro - Table of Contents
+- [The Whole SLURM](#the-whole-slurm)
+- [SLURM Directives](#slurm-directives)
+  - [Basic SLURM Script Header](#basic-slurm-script-header)
+  - [Requesting Specific Resources](#requesting-specific-resources)
+  - [Setting Email Notifications](#setting-email-notifications)
+  - [Array Job Configuration](#array-job-configuration)
+  - [Setting Environment Variables](#setting-environment-variables)
+  - [Defining Dependencies](#defining-dependencies)
+  - [Specifying Reservation Name](#specifying-reservation-name)
+  - [Enabling Hyper-Threading](#enabling-hyper-threading)
+  - [Specifying Account and QoS](#specifying-account-and-qos)
+  - [Debugging and Verbose Output](#debugging-and-verbose-output)
+  - [Logging and Error Output](#logging-and-error-output)
+- [Modules](#modules)
+- [Command and Execute](#command-and-execute)
+- [Optional Cleanup](#optional-cleanup)
+- [To SLURM or not to SLURM](#to-slurm-or-not-to-slurm)
 
-What is this thing your are asking? In practical terms, a SLURM script typically consists of the following parts:
+
+
+## The Whole SLURM
+What is this thing your are asking? Essentially it is the packaging of the computing tasks that you want to do. For example if you want to assemble 100 chloroplast genomes and you have written a script that reads through a folder pairs up the read files, loads the software e.g. GetOrganelle. You would be using SLURM to send it off too a compute node in the supercomputer. So you need to add info for the scheduler to get a big enough computer, load all your software that you need and also tell the computer where the data is and where the results should go.
+
+
+In practical terms, a SLURM script typically consists of the following parts:
 
 1. **Shebang line**: This specifies the interpreter to be used to execute the script, usually `#!/bin/bash` for bash scripts.
 
@@ -19,26 +41,30 @@ Overall, a SLURM script provides a structured way to specify job requirements an
 ## SLURM Directives
 Probably also called the header. Will be at the beginning of the script. Here the most commonly used ones
 
-1. **Basic SLURM Script Header:**
+### **Basic SLURM Script Header:**
+This contains all the information for the scheduler. It can have many different aspects in it. Some of them are listed below. Some are compulsory.
+
+1. **Job description, time keeping and basics**
    ```bash
    #!/bin/bash
    #SBATCH --job-name=my_job       # Name of the job
-   #SBATCH --output=my_job.out     # Name of stdout file
-   #SBATCH --error=my_job.err      # Name of stderr file
    #SBATCH --partition=partition   # Name of partition e.g. work for us
-   #SBATCH --nodes=1               # Number of nodes
-   #SBATCH --ntasks-per-node=1     # Number of tasks per node
    #SBATCH --time=01:00:00         # Wall clock limit (HH:MM:SS)- max is 4 hours
+   #SBATCH --time=1-0              # Wall clock limit for 1 day an 0 minutes
    ```
 
 2. **Requesting Specific Resources:**
+This is generally the most challenging to predict. You generally run your program on an interactive node and then assess how much you need for upscaling. This is called benchmarking. 
    ```bash
+   #SBATCH --nodes=1               # Number of nodes
+   #SBATCH --ntasks-per-node=1     # Number of tasks per node
    #SBATCH --cpus-per-task=4       # Number of CPUs per task
    #SBATCH --mem=8G                # Memory per node
    #SBATCH --gres=gpu:1            # Number of GPUs
    ```
 
 3. **Setting Email Notifications:**
+If you are running a lot of jobs you might need a smart inbox so you don't get hammered by these emails.
    ```bash
    #SBATCH --mail-user=email@example.com  # Email address for notifications
    #SBATCH --mail-type=ALL                # Email types (BEGIN, END, FAIL, REQUEUE, ALL)
@@ -50,6 +76,7 @@ Probably also called the header. Will be at the beginning of the script. Here th
    ```
 
 5. **Setting Environment Variables:**
+If you have your own environment or several groups you are a member of it sometimes can be better to use `--export=NONE` so that there is no confusion.
    ```bash
    #SBATCH --export=ALL        # Export all or no environment variables (ALL, None)
    ```
@@ -81,9 +108,17 @@ Probably also called the header. Will be at the beginning of the script. Here th
     #SBATCH --test-only          # Dry run without starting the job
     ```
 
+11. **Logging and Error Output:**
+    ```bash
+    #SBATCH -o fastp-%j.out      # Log output file with attached job id
+    #SBATCH -e fastp-%j.err      # Error file with job id attached
+    ```
+
 These headers provide various options for customizing SLURM jobs based on specific requirements.
 
-## Module loading 
+## Modules 
+Modules are packages of installed software on KAYA. You need to "load" a package on your compute node and then you can run your program that requires this type of software. 
+
 This will generate the environment needed for your script to run. Kaya uses a package called `Module` that lets you dynamically modify the shell environment by loading and unloading packages of software. There are central modules and group shared modules for the Hooper Lab.
 
 ### Usage
@@ -108,7 +143,7 @@ This will generate the environment needed for your script to run. Kaya uses a pa
    ```
    If you cannot see the group shared modules you need to add the path to your `.bash_profile` or `.kaya_env.sh` file:
     ```bash
-    #connect to group set ups (environments and module packages)
+    #connect to group set ups (environments and module packages).n E.g. group `peb007`
     module use -p /group/peb007/modules
     ```
 5. Unloading a module:
@@ -176,3 +211,17 @@ rmdir /scratch/peb007/chooper/data/temp_dir2
 ```
 
 These examples illustrate various cleanup actions that can be performed after the assembly process. These actions may include removing intermediate files, compressing large output files, organizing final results into separate directories, archiving the entire assembly directory for storage, and cleaning up temporary directories used during the process.
+
+### To SLURM or not to SLURM
+Working on `KAYA` does not have to use SLURM all the time. If you are just trying something or need to keep a close eye on a proceess you are developing you can use `KAYA` in real time. This is called on DEMAND. 
+
+#### Requesting a node on Kaya
+You can request a node to work on it for real time using:
+
+```bash
+salloc
+```
+
+#### using the OnDemand interphase
+where was that link again???
+
