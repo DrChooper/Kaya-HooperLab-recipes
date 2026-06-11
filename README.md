@@ -15,6 +15,7 @@ This landing page gives you an overview HPC and how it is put together. For the 
 <!-- 3. [Hand Over](sops/handover.md) -->
 
 ### More advanced items
+- [HPC info requests](sops/hpcinfo.md)
 - [Bespoke Software Installation](sops/AdminSOP.md)
 <!-- - [Recipes Directory](recipes/RecipesDir.md) -->
 <!-- - [Setting up Julia Projects](Julia_projects.md) -->
