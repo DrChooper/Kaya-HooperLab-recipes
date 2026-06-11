@@ -17,7 +17,7 @@ This landing page gives you an overview HPC and how it is put together. For the 
 - [Bespoke Software Installation](sops/AdminSOP.md)
 - [Recipes Directory](recipes/RecipesDir.md)
 <!-- - [Setting up Julia Projects](Julia_projects.md) -->
-- [Benchmarking](sops/benchmarking.md)
+<!-- - [Benchmarking](sops/benchmarking.md) -->
 
 ## Resources useful for novices and beyond:
 - [ListerLab Tutorial](https://github.com/cpflueger2016/Kaya-ListerLab-Tutorial)
