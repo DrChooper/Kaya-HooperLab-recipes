@@ -10,12 +10,13 @@ This landing page gives you an overview HPC and how it is put together. For the 
 ### Basics when starting and finishing
 1. [Get Started on Kaya in the Hooper](sops/GetStarted.md)
 2. [Group Data Storage](sops/DataStorage.md)
-2. [Slurm Intro](sops/SLURMintro.md)
-3. [Hand Over](sops/handover.md)
+3. [Slurm Intro](sops/SLURMintro.md)
+4. [Pipeline Development](sops/pipes_intro.md)
+<!-- 3. [Hand Over](sops/handover.md) -->
 
 ### More advanced items
 - [Bespoke Software Installation](sops/AdminSOP.md)
-- [Recipes Directory](recipes/RecipesDir.md)
+<!-- - [Recipes Directory](recipes/RecipesDir.md) -->
 <!-- - [Setting up Julia Projects](Julia_projects.md) -->
 <!-- - [Benchmarking](sops/benchmarking.md) -->
 

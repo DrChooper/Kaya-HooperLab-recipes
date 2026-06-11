@@ -13,7 +13,7 @@ This can be substituted for any group you might have this set up.
 
 ---
 ### Julia Programming
-Julia is installed in the root directory of the group and can be updated and reached using modules. Julia versions are managed by `juliaup`. Below for group peb007. Substitute 7 with 5 for updating peb005 or substitute with _s for the group shooshared.
+Julia is installed in the root directory of the group and can be updated and reached using modules. Julia versions are managed by `juliaup`. Below for group shooshared with _s for the group module suffix ID. the peb005 and peb007 contain a 5 and 5 respectively.
 
 #### updating julia
 1. load in juliaup_s to install versions of julia
